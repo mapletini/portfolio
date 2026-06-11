@@ -25,7 +25,7 @@ Forks and the profile README repository (name === username) are automatically ex
 ### 1. Clone and install
 
 ```bash
-git clone https://github.com/lonelydwarffiles/portfolio.git
+git clone https://github.com/mapletini/portfolio.git
 cd portfolio
 npm install
 ```
@@ -61,6 +61,25 @@ npm run preview   # optional local preview
 ```
 
 The `dist/` folder is ready to deploy to any static host (Vercel, Netlify, GitHub Pages, etc.).
+
+## Docker
+
+Build the image (pass your Vite env vars as build args):
+
+```bash
+docker build \
+  --build-arg VITE_GITHUB_USERNAME=your_github_username \
+  --build-arg VITE_GITHUB_TOKEN=your_github_personal_access_token \
+  -t portfolio:latest .
+```
+
+Run the container:
+
+```bash
+docker run --rm -p 8080:80 portfolio:latest
+```
+
+Open <http://localhost:8080>.
 
 ## Project structure
 
