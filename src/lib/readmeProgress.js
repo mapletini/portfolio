@@ -65,8 +65,8 @@ export async function fetchReadmeProgress(fullName) {
     const text = atob(data.content.replace(/\n/g, ''));
 
     // Match all task-list checkboxes: - [ ] and - [x] / - [X]
-    const allMatches = text.match(/^\s*-\s+\[[ xX]\]/gm) ?? [];
-    const completedMatches = text.match(/^\s*-\s+\[[xX]\]/gm) ?? [];
+    const allMatches = text.match(/^\s*[-*+]\s+\[[ xX]\]/gm) ?? [];
+    const completedMatches = text.match(/^\s*[-*+]\s+\[[xX]\]/gm) ?? [];
 
     const total = allMatches.length;
     if (total === 0) {
