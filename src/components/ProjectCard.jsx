@@ -1,4 +1,6 @@
 import { getRepoStatus, STATUS_STYLES } from '../lib/status';
+import { useReadmeProgress } from '../hooks/useReadmeProgress';
+import ProgressBar from './ProgressBar';
 
 const LANGUAGE_COLORS = {
   JavaScript: '#f1e05a',
@@ -39,6 +41,7 @@ function LanguageDot({ language }) {
 export default function ProjectCard({ repo }) {
   const status = getRepoStatus(repo);
   const { badge, dot } = STATUS_STYLES[status];
+  const { progress } = useReadmeProgress(repo.full_name);
 
   return (
     <article className="flex flex-col gap-3 rounded-2xl border border-gray-200 bg-white p-5 shadow-sm transition-shadow hover:shadow-md">
@@ -61,6 +64,9 @@ export default function ProjectCard({ repo }) {
           <span className="italic text-gray-400">No description provided.</span>
         )}
       </p>
+
+      {/* Progress bar (only rendered when README has task-list checkboxes) */}
+      <ProgressBar progress={progress} />
 
       {/* Footer */}
       <div className="flex items-center justify-between pt-1">
